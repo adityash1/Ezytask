@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const server = express();
 const cors = require("cors");
 
+const signUpRouter = require("./controllers/signup");
+const loginRouter = require("./controllers/login");
 const notesRouter = require("./controllers/notes");
 
 const Note = require("./models/note");
@@ -35,6 +37,8 @@ server.get("/", (_, res) => {
     });
 });
 
+server.use("/api/signup", signUpRouter);
+server.use("/api/login", loginRouter);
 server.use("/api/notes", notesRouter);
 
 // middleware to handle errors
